@@ -1,0 +1,5 @@
+.rating {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,30px);
+    column-gap:10px;
+}

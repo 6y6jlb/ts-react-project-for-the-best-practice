@@ -1,12 +1,12 @@
 import React from "react";
 import {Star} from "./Star";
 
-type RatingType = {
+export type RatingType = {
     value: 1 | 2 | 3 | 4 | 5 | 0
     setRating: (value: 1 | 2 | 3 | 4 | 5 | 0) => void
 }
 
-type StarType = {
+export type StarType = {
     selected: boolean
     value: 1 | 2 | 3 | 4 | 5
 }

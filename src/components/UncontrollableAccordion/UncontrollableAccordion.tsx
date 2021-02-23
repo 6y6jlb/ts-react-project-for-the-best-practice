@@ -3,18 +3,20 @@ import {UnAccordionBody} from "./UnAccordionBody";
 import {UnAccordionHead} from "./UnAccordionHead";
 import s from './UncontrollableAccordion.module.css'
 
-export function UncontrollableAccordion() {
+export type UncontrollableAccordionPropsType = {
+    color?:string|undefined
+}
+
+
+export function UncontrollableAccordion(props:UncontrollableAccordionPropsType) {
     const [toggle, setToggle] = useState(false)
 
-    let bodyRender = toggle&&<UnAccordionBody/>
+    let bodyRender = toggle&&<UnAccordionBody color={props.color} />
 
     return (
         <div>
-            <div className={s.header}><UnAccordionHead/></div>
+            <div className={s.header}><UnAccordionHead toggle={toggle} setToggle={setToggle} color={props.color}/></div>
 
-            <button className={s.button} onClick={()=>{
-                setToggle(!toggle)
-            }}>toggle</button>
             {bodyRender}
         </div>
     )

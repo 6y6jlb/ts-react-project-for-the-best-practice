@@ -6,6 +6,6 @@ export function AccordionHead(props: AccordionPropsType) {
     return (
         <div onClick={()=>{
             props.onClick(!props.collapsed)
-        }}><h3 >Menu</h3></div>
+        }}><h3 style={{color:props.color}} >Menu</h3></div>
     )
 }

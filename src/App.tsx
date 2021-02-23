@@ -1,11 +1,14 @@
 import React, {useState} from 'react';
 import './App.css';
-import OnOff from "./components/OnOff/onOff";
+import {UncontrollableOnOff} from "./components/UncontrollableOnOff/uncontrollableOnOff";
 import {Accordion} from "./components/Accordion/Accordion";
 import {Rating} from "./components/Rating/Rating";
 import {UncontrollableAccordion} from "./components/UncontrollableAccordion/UncontrollableAccordion";
 import {UncontrollableRating} from "./components/UncontrollableRating/UncontrollableRating";
-import {UncontrollableOnOff} from "./OnOff/UncontrollableOnOff";
+import {OnOff} from "./components/OnOff/OnOff";
+
+
+
 
 
 function App() {
@@ -16,11 +19,13 @@ function App() {
 
     return (
         <div className="App">
-            <OnOff/>
-            <UncontrollableOnOff on={on} onClick={setOn}/>
+
+            <OnOff on={on} onClick={setOn}/>
             <Accordion collapsed={collapsed} onClick={setCollapsed}/>
-            <UncontrollableAccordion/>
             <Rating value={rating} setRating={setRating}/>
+            <hr />
+            <UncontrollableOnOff/>
+            <UncontrollableAccordion/>
             <UncontrollableRating/>
         </div>
     );

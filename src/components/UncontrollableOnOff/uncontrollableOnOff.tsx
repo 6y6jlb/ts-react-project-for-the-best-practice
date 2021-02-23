@@ -1,12 +1,16 @@
-import React from "react";
+import React, {useState} from "react";
 
-type UncontrollableOnOffPropsType = {
-    on: boolean
-    onClick: (value: boolean) => void
+export type UncontrollableOnOffPropsType = {
+    backgroundColorOn?:string
+    backgroundColorOff?:string
 }
 
-
 export function UncontrollableOnOff(props: UncontrollableOnOffPropsType) {
+    const [on, setOn] = useState(false)
+
+    function selectOnOff(value: boolean) {
+        setOn(value)
+    }
 
     const onStyle = {
         padding: '5px',
@@ -14,9 +18,9 @@ export function UncontrollableOnOff(props: UncontrollableOnOffPropsType) {
         height: '20px',
         border: '1px solid grey',
         borderRadius: '10%',
-        backgroundColor: props.on ? 'green' : 'white',
+        backgroundColor: on ? (props.backgroundColorOn||'green' ): 'white',
         display: 'inline-block',
-        color: props.on ? 'white' : 'green',
+        color: on ? 'white' : (props.backgroundColorOn||'green' )
     }
     const offStyle = {
         padding: '5px',
@@ -24,34 +28,31 @@ export function UncontrollableOnOff(props: UncontrollableOnOffPropsType) {
         height: '20px',
         border: '1px solid grey',
         borderRadius: '10%',
-        backgroundColor: !props.on ? 'red' : 'white',
+        backgroundColor: !on ? (props.backgroundColorOff||'red') : 'white',
         marginLeft: '2px',
         display: 'inline-block',
-        color: !props.on ? 'white' : 'red'
+        color: !on ? 'white' : (props.backgroundColorOff||'red')
     }
     const indicatorStyle = {
         width: '15px',
         height: '15px',
         border: '1px solid grey',
         borderRadius: '10px',
-        backgroundColor: props.on ? 'green' : 'red',
+        backgroundColor:  on? props.backgroundColorOn || 'green' : props.backgroundColorOff||'red',
         marginLeft: '5px',
         display: 'inline-block'
     }
-
     return (
         <div>
             <div style={onStyle} onClick={() => {
-                props.onClick(true)
-
+                selectOnOff(true)
             }}>on
             </div>
             <div style={offStyle} onClick={() => {
-                props.onClick(false)
+                selectOnOff(false)
             }}>off
             </div>
             <div style={indicatorStyle}/>
         </div>
     )
 }
-

@@ -1,8 +1,12 @@
 import React from "react";
 
-export function AccordionBody() {
+type AccordionBodyPropsType={
+    color?:string
+}
+
+export function AccordionBody(props:AccordionBodyPropsType) {
     return (
-        <ul>
+        <ul style={{color:props.color}}>
             <li>firsTask</li>
             <li>secondTask</li>
             <li>thirdTask</li>

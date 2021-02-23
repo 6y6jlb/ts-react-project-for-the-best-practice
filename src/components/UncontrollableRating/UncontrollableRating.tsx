@@ -2,30 +2,23 @@ import React, {useState} from "react";
 import {Star} from "./Star";
 import s from './UncontrollableRating.module.css'
 
-export function UncontrollableRating() {
+export type UncontrollableRatingPropsType = {
+
+}
+
+export function UncontrollableRating(props:UncontrollableRatingPropsType) {
     const [count, setCount] = useState(1)
 
     let stars = [
-        {selected: false},
-        {selected: false},
-        {selected: false},
-        {selected: false},
-        {selected: false},
+        {value: 1, selected: false},
+        {value: 2,selected: false},
+        {value: 3,selected: false},
+        {value: 4,selected: false},
+        {value: 5,selected: false},
     ]
     let newRating = stars.map((s, index) => {
-        return (
-            index < count ? <div>
-                <button onClick={() => {
-                    setCount(index + 1)
-                }}/>
-                <Star selected={true}/></div> : <div>
-                <button onClick={() => {
-                    setCount(index + 1)
-                }}/>
-                <Star selected={false}/></div>
-        )
+        return <div><Star value={s.value} setCount={setCount} selected={index < count}/></div>
     })
-
     return (
         <div className={s.rating}>
             {newRating}

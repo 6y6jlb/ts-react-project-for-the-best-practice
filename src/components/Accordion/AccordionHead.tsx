@@ -1,11 +1,19 @@
 import React from "react";
-import {AccordionPropsType} from "./Accordion";
 
-export function AccordionHead(props: AccordionPropsType) {
+
+
+export type AccordionHeadPropsType = {
+    title:string
+    collapsed: boolean
+    onClick:(collapsed:boolean)=>void
+    color?:string
+}
+
+export function AccordionHead(props: AccordionHeadPropsType) {
 
     return (
         <div onClick={()=>{
             props.onClick(!props.collapsed)
-        }}><h3 style={{color:props.color}} >Menu</h3></div>
+        }}><h3 style={{color:props.color}} >--{props.title}--</h3></div>
     )
 }

@@ -1,0 +1,30 @@
+.selectFrame {
+    width: 90px;
+    text-align: center;
+}
+.selectHead {
+    display: grid;
+    grid-template-columns: 80px 10px;
+    column-gap: 10px;
+    border-bottom: 2px solid black;
+    text-transform: uppercase;
+    padding: 2px 5px;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+.selectBody {
+    padding: 7px 0px;
+    position: relative;
+    top:-14px;
+    width:90px;
+    background-color: white;
+    -webkit-box-shadow: 0 2px 7px 2px rgba(34, 60, 80, 0.6);
+    -moz-box-shadow: 0 2px 7px 2px rgba(34, 60, 80, 0.6);
+    box-shadow: 0 2px 7px 2px rgba(34, 60, 80, 0.6);
+}
+.item {
+    padding: 2px 0;
+}
+.item :focus {
+    background-color: #333333;
+}

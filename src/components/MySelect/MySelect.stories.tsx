@@ -19,7 +19,8 @@ const Template: Story<MySelectPropsType> = (args) => <MySelect {...args}/>
 
 export const Collapsed = Template.bind({})
 Collapsed.args = {
-    collapsedChanger:() => {},
+    collapsedChanger: () => {
+    },
     onValueClick: onValueClick,
     collapsed: true,
     title: 'NeedToBuy',
@@ -28,7 +29,8 @@ Collapsed.args = {
 }
 export const UnCollapsed = Template.bind({})
 UnCollapsed.args = {
-    collapsedChanger:() => {},
+    collapsedChanger: () => {
+    },
     onValueClick: onValueClick,
     collapsed: false,
     title: 'friends',
@@ -37,14 +39,14 @@ UnCollapsed.args = {
 
 
 export const ControlledSelect: Story<MySelectPropsType> = (args) => {
-    const [collapsed, setCollapsed] = useState<boolean>(false)
-    const collapsedChanger = () => {
-        setCollapsed(!collapsed)
+    const [collapsed, setCollapsed] = useState<boolean>(true)
+    const collapsedChanger = (collapsedValue: boolean) => {
+        setCollapsed(collapsedValue)
     }
 
-    return <MySelect collapsedChanger={collapsedChanger} items={[{title: 'вася', value: '1'},
+    return <MySelect collapsedChanger={collapsedChanger} items={[{title: 'вася', value: '1'},{title: '', value: '0'},
         {title: "петя", value: '1'}, {title: "саша", value: '1'}]}
-                      title={'Users'}
-                      collapsed={collapsed}
-                      onValueClick={onValueClick}/>
+                     title={'Users'}
+                     collapsed={collapsed}
+                     onValueClick={onValueClick}/>
 }

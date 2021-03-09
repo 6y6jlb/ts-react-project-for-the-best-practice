@@ -46,3 +46,4 @@ test('some arrays separateTypes for codeWars', (() => {
     expect(count4.boolean).toStrictEqual([false])
 
 }))
+

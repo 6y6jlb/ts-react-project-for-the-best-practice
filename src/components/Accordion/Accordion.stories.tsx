@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
-import {Accordion, AccordionPropsType} from "./Accordion";
+import React, {useCallback, useState} from 'react';
+import {Accordion, AccordionPropsType, MemorizedAccordion} from "./Accordion";
 import {Meta, Story} from "@storybook/react/types-6-0";
 import {action} from "@storybook/addon-actions";
+import AccordionMemo from "./AccordionHead";
 
 const onValueClick = action('some item was clicked')
 export default {
@@ -38,6 +39,7 @@ UnCollapsed.args = {
 }
 
 export const ControlledAccordion: Story<AccordionPropsType> = (args) => {
+    console.log ('controlled Accordion Render')
     const [collapsed, setCollapsed] = useState<boolean>(false)
     const onClick = () => {
         setCollapsed(!collapsed)
@@ -48,5 +50,21 @@ export const ControlledAccordion: Story<AccordionPropsType> = (args) => {
                       title={'Users'}
                       collapsed={collapsed}
                       onClick={onClick}
+                      onValueClick={onValueClick} />
+}
+
+export const ControlledAccordionMemoHead: Story<AccordionPropsType> = (args) => {
+    const [collapsed, setCollapsed] = useState<boolean>(false)
+    const onClick = () => {
+        setCollapsed(!collapsed)
+    }
+const memorizedCallBack = useCallback(onClick,[collapsed])
+
+
+    return <MemorizedAccordion items={[{title:'вася',value:'1'},
+        {title:"петя",value:'1'},{title:"саша",value:'1'}]}
+                      title={'Users'}
+                      collapsed={collapsed}
+                      onClick={memorizedCallBack}
                       onValueClick={onValueClick} />
 }

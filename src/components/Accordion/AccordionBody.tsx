@@ -14,6 +14,7 @@ type AccordionBodyPropsType={
 
 
 export function AccordionBody(props:AccordionBodyPropsType) {
+    console.log ('render accordion body')
 
     const items = props.items.map((i,index)=><li key={index} onClick={()=>{
         props.onValueClick(i.value)
@@ -25,3 +26,5 @@ export function AccordionBody(props:AccordionBodyPropsType) {
         </ul>
     )
 }
+
+export const MemorizedAccordionBody = React.memo(AccordionBody)

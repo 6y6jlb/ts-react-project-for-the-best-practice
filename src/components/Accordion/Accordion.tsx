@@ -1,6 +1,7 @@
 import React from "react";
-import {AccordionHead} from "./AccordionHead";
-import {AccordionBody, ItemAccordionType} from "./AccordionBody";
+
+import {AccordionBody, ItemAccordionType, MemorizedAccordionBody} from "./AccordionBody";
+import AccordionHeadMemo from "./AccordionHead";
 
 
 export type AccordionPropsType = {
@@ -14,12 +15,15 @@ export type AccordionPropsType = {
 
 
 export function Accordion(props:AccordionPropsType) {
+    console.log ('render accordion')
     return (
         <div>
-            <AccordionHead title={props.title} onClick={props.onClick} collapsed={props.collapsed} color={props.color}/>
-            {props.collapsed&&<AccordionBody onValueClick={props.onValueClick} items={props.items} color={props.color} />}
+            <AccordionHeadMemo title={props.title} onClick={props.onClick} collapsed={props.collapsed} color={props.color}/>
+            {props.collapsed&&<MemorizedAccordionBody onValueClick={props.onValueClick} items={props.items} color={props.color} />}
 
         </div>
     )
 }
+
+export const MemorizedAccordion = React.memo(Accordion)
 

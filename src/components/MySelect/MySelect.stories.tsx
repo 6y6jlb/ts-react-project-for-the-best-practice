@@ -43,10 +43,12 @@ export const ControlledSelect: Story<MySelectPropsType> = (args) => {
     const collapsedChanger = (collapsedValue: boolean) => {
         setCollapsed(collapsedValue)
     }
+    const [activeValue,setActiveValue] = useState<false|string>(false)
 
-    return <MySelect collapsedChanger={collapsedChanger} items={[{title: 'вася', value: '1'},{title: '', value: '0'},
-        {title: "петя", value: '1'}, {title: "саша", value: '1'}]}
+    return <MySelect collapsedChanger={collapsedChanger} items={[{title: 'вася', value: '0'},{title: 'пиф-паф', value: '1'},
+        {title: "петя", value: '2'}, {title: "саша", value: '3'}]}
                      title={'Users'}
+                     activeValue={activeValue}
                      collapsed={collapsed}
-                     onValueClick={onValueClick}/>
+                     onValueClick={setActiveValue}/>
 }

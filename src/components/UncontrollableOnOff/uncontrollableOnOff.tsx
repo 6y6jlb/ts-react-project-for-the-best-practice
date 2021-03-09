@@ -5,6 +5,9 @@ export type UncontrollableOnOffPropsType = {
     backgroundColorOff?:string
 }
 
+export const UncontrollableMemorizedOnOff=React.memo(UncontrollableOnOff)
+
+
 export function UncontrollableOnOff(props: UncontrollableOnOffPropsType) {
     const [on, setOn] = useState(false)
 

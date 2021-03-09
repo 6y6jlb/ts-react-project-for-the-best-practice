@@ -1,55 +1,82 @@
 import style from './MySelect.module.css'
-import {useState} from "react";
+import React, {KeyboardEvent, useEffect, useState} from 'react'
+import {SneakyZone} from "./SneakyZone";
+import {HeaderMemo} from "./HeaderZone";
 
 
 export type ItemSelectType = {
     title: string
-    value: any
+    value: string
 }
 export type MySelectPropsType = {
+    items: Array<ItemSelectType>
+    activeValue: any
     title: string
-    collapsed: boolean
-    color?: string
-    items: ItemSelectType[]
+    color?: string //optional
     onValueClick: (value: any) => void
     collapsedChanger: (collapsedValue: boolean) => void
+    collapsed: boolean
 }
 
 export function MySelect(props: MySelectPropsType) {
-    const [focus, setFocus] = useState<false | string>(false)
+    const selectedItem = props.items.find(i => i.value === props.activeValue)
+    const [hoveredElement, setHoveredElement] = useState<any>(props.activeValue | 0) //false
+    const hoveredItem = props.items.find(i => i.value === hoveredElement)
 
+    useEffect(() => {
+        setHoveredElement(props.activeValue);
+    }, [props.activeValue])
 
-    const onMouseLeaveOption = () => {
-        console.log('setTimeout')
-        setTimeout(() =>
-            props.collapsedChanger(true), 3000)
-    }
     const onBlurOption = () => {
         console.log('onBlur')
         props.collapsedChanger(true)
     }
-
-    const mappedItems = props.items.map((i, index) => <div onClick={() => {
-        setFocus(i.title)
+    const mappedItemOnClick = (value: any) => {
+        console.log('mappedOnClick')
+        props.onValueClick(value)
         props.collapsedChanger(true)
-    }}
-                                                           className={style.normalItem}
-                                                           key={index}>{i.title}</div>)
+    }
+    const onKeyPressArrow = (event: KeyboardEvent<HTMLDivElement>) => {
+        if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+            for (let i = props.activeValue | 0; i < props.items.length; i++) {
+                if (props.items[i].value === hoveredElement) {
+                    const pretendElement = event.key === 'ArrowUp'
+                        ? props.items[i - 1]
+                        : props.items[i + 1]
+                    if (pretendElement) {
+                        props.onValueClick(pretendElement.value)
+                        return
+                    }
+                }
+            }
+            if (!selectedItem) {
+                props.onValueClick(props.items[0].value)
+            }
+
+        }
+        if (event.key === 'Enter' || event.key === 'Esc') {
+            props.onValueClick(props.activeValue || 0)
+            props.collapsedChanger(true)
+        }
+    }
+
+    const mappedItems = props.items.map((i, index) => <div
+        onMouseEnter={() => {
+            setHoveredElement(i.value)
+        }}
+        onClick={() => mappedItemOnClick(i.value)}
+        className={style.normalItem + " " + (hoveredItem === i ? style.active : " ")}
+        key={index} tabIndex={1}>{i.title}</div>)
 
 
     return (
         <div className={style.selectFrame}>
-            <div className={style.selectHead}
-                 onClick={() => props.collapsedChanger(!props.collapsed)}>
-                <span
-                    style={{color: props.color}}>{focus ? focus : props.title}</span>
-                <span>▼</span>
-            </div>
-            {props.collapsed ? '' : <div onBlur={onBlurOption} tabIndex={0}
-                                         onMouseLeave={onMouseLeaveOption}
-                                         id={"zone"} className={style.selectBody}>
-                {mappedItems}
-            </div>}
+            <HeaderMemo selectedItem={selectedItem} color={props.color} collapsed={props.collapsed}
+                        title={props.title}
+                        collapsedChanger={props.collapsedChanger}
+                        onKeyPressArrow={onKeyPressArrow}/>
+            <SneakyZone collapsed={props.collapsed} onBlurOption={onBlurOption} mappedItems={mappedItems}/>
         </div>
     )
 }
+

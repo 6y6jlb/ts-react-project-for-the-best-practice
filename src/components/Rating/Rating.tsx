@@ -1,5 +1,5 @@
 import React from "react";
-import {Star} from "./Star";
+import {MemorizedStar} from "./Star";
 
 export type RatingType = {
     value: 1 | 2 | 3 | 4 | 5 | 0
@@ -26,8 +26,8 @@ export function Rating(props: RatingType) {
     let newRating = stars.map((s) => {
         return (
             s.value <= props.value ?
-                <Star key={s.value} value={s.value} setRating={props.setRating} selected={true}/> :
-                <Star key={s.value} value={s.value} setRating={props.setRating} selected={false}/>
+                <MemorizedStar key={s.value} value={s.value} setRating={props.setRating} selected={true}/> :
+                <MemorizedStar key={s.value} value={s.value} setRating={props.setRating} selected={false}/>
         )
     })
 

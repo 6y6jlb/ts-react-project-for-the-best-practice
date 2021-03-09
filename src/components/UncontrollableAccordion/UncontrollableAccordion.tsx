@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {UnAccordionBody} from "./UnAccordionBody";
-import {UnAccordionHead} from "./UnAccordionHead";
+import {MemorizedUncontrollableAccordionHead} from "./UnAccordionHead";
 import s from './UncontrollableAccordion.module.css'
 
 export type UncontrollableAccordionPropsType = {
@@ -15,7 +15,7 @@ export function UncontrollableAccordion(props:UncontrollableAccordionPropsType) 
 
     return (
         <div>
-            <div className={s.header}><UnAccordionHead toggle={toggle} setToggle={setToggle} color={props.color}/></div>
+            <div className={s.header}><MemorizedUncontrollableAccordionHead toggle={toggle} setToggle={setToggle} color={props.color}/></div>
 
             {bodyRender}
         </div>

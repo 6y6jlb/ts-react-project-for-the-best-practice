@@ -1,0 +1,8 @@
+.timerDisplay {
+    border: 2px solid #134591;
+    color: #134591;
+    font-size: 5em;
+    width: max-content;
+    height: max-content;
+    margin: 0 auto;
+}

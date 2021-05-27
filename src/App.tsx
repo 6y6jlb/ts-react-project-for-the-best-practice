@@ -9,8 +9,6 @@ import {OnOff} from "./components/OnOff/OnOff";
 
 
 
-
-
 function App() {
     const [rating, setRating] = useState<1 | 2 | 3 | 4 | 5 | 0>(1)
     const [on, setOn] = useState<boolean>(false)

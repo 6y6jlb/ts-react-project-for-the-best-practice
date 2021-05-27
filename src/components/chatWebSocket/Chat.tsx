@@ -21,8 +21,8 @@ const Chat: React.FC = () => {
         }
     }
     useEffect ( () => {
+        console.log ('web socket')
         setWs ( new WebSocket ( 'wss://social-network.samuraijs.com//handlers/ChatHandler.ashx' ) )
-
     }, [] )
 
 
@@ -30,9 +30,8 @@ const Chat: React.FC = () => {
         setMessage ( e.currentTarget.value )
     }
     const sendMessage = (() => {
-        ws?.send ( message )
+        ws?.send ( message.trim() )
         setMessage ( '' )
-        chatRef.current?.scrollTo ( 0, chatRef.current.scrollHeight )
     })
 
     return (
@@ -42,7 +41,7 @@ const Chat: React.FC = () => {
                     return <div className={ style.self } key={ i }>
                         <img style={ {width: '50px', height: '50px'} }
                              src={ u.photo || "https://via.placeholder.com/50" } alt=""/>
-                        <b>{ u.userName }</b>
+                        <b>{ u.userName } {u.userId}</b>
                         <p>{ u.message }</p>
                     </div>
                 } ) }

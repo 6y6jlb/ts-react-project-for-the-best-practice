@@ -1,0 +1,14 @@
+.chatFrame {
+    width: 400px;
+    height: 400px;
+    margin: 100px auto;
+
+}
+.chat {
+    height: 350px;
+    overflow: auto;
+}
+.textArea textarea{
+    resize: none;
+
+}

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import './App.css';
-import {UncontrollableOnOff} from "./components/UncontrollableOnOff/uncontrollableOnOff";
+
 import {Accordion} from "./components/Accordion/Accordion";
 import {Rating} from "./components/Rating/Rating";
 import {UncontrollableAccordion} from "./components/UncontrollableAccordion/UncontrollableAccordion";
@@ -21,10 +21,9 @@ function App() {
         <div className="App">
 
             <OnOff on={on} onClick={setOn}/>
-            <Accordion collapsed={collapsed} onClick={setCollapsed}/>
+           {/* <Accordion collapsed={collapsed} onClick={setCollapsed}/>*/}
             <Rating value={rating} setRating={setRating}/>
             <hr />
-            <UncontrollableOnOff/>
             <UncontrollableAccordion/>
             <UncontrollableRating/>
         </div>

@@ -47,7 +47,7 @@ export const ControlledAccordion: Story<AccordionPropsType> = (args) => {
 
     return <Accordion items={[{title:'вася',value:'1'},
         {title:"петя",value:'1'},{title:"саша",value:'1'}]}
-                      title={'Users'}
+                      title={'User'}
                       collapsed={collapsed}
                       onClick={onClick}
                       onValueClick={onValueClick} />
@@ -63,7 +63,7 @@ const memorizedCallBack = useCallback(onClick,[collapsed])
 
     return <MemorizedAccordion items={[{title:'вася',value:'1'},
         {title:"петя",value:'1'},{title:"саша",value:'1'}]}
-                      title={'Users'}
+                      title={'User'}
                       collapsed={collapsed}
                       onClick={memorizedCallBack}
                       onValueClick={onValueClick} />

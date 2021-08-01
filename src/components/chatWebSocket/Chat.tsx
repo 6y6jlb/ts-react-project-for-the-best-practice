@@ -21,8 +21,8 @@ const Chat: React.FC = () => {
         }
     }
     useEffect ( () => {
-        console.log ('web socket')
         setWs ( new WebSocket ( 'wss://social-network.samuraijs.com//handlers/ChatHandler.ashx' ) )
+
     }, [] )
 
 
@@ -32,7 +32,7 @@ const Chat: React.FC = () => {
     const sendMessage = (() => {
         ws?.send ( message.trim() )
         setMessage ( '' )
-        console.log (message)
+        chatRef.current?.scrollTo ( 0, chatRef.current.scrollHeight )
     })
 
     return (
@@ -49,7 +49,7 @@ const Chat: React.FC = () => {
             </div>
 
             <div className={ style.textArea }>
-                <textarea onChange={ onMessageChange } value={message}/>
+                <textarea onChange={ onMessageChange }>{ message }</textarea>
                 <button onClick={ sendMessage }>send</button>
             </div>
         </div>

@@ -1,10 +1,14 @@
 import React, {useState} from 'react';
 import './App.css';
+
+import {Accordion} from "./components/Accordion/Accordion";
 import {Rating} from "./components/Rating/Rating";
 import {UncontrollableAccordion} from "./components/UncontrollableAccordion/UncontrollableAccordion";
 import {UncontrollableRating} from "./components/UncontrollableRating/UncontrollableRating";
 import {OnOff} from "./components/OnOff/OnOff";
-import {UsersMongoRequest} from "./components/UsersMongoRequest/UsersMongoRequest";
+
+
+
 
 
 function App() {
